@@ -89,3 +89,41 @@ describe('GET /api/contacts/:contactId', () => {
     })
 
 })
+
+describe('PUT /api/contacts/:contactId', () => {
+    beforeEach(async () => {
+        await UserTest.create()
+        await ContactTest.create()
+    })
+
+    afterEach(async () => {
+        await ContactTest.deleteAll();
+        await UserTest.delete();
+    })
+
+    it('should be able to update contact', async () => {
+        const contact = await ContactTest.get();
+        const response =  await supertest(buki)
+
+        .put(`/api/contacts/${contact.id}`)
+        .set("X-API-TOKEN", "test")
+        .send({
+            first_name: "Akhmal",
+            last_name: "Faidillah",
+            email: "Akhmal@example.com",
+            phone: "777777"
+        })
+        logger.debug(response.body);
+        expect(response.status).toBe(200);
+        expect(response.body.data.id).toBe(contact.id);
+        expect(response.body.data.first_name).toBe("Akhmal");
+        expect(response.body.data.last_name).toBe("Faidillah");
+        expect(response.body.data.email).toBe("Akhmal@example.com");
+        expect(response.body.data.phone).toBe("777777");
+
+    })
+
+    it('should be able to update contact', async () => {
+        
+    })
+})
