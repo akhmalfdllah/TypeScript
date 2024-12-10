@@ -1,7 +1,7 @@
 import supertest from "supertest"
 import { buki } from "../src/application/buki";
 import { logger } from "../src/application/logging";
-import { UserTest } from "./test-utils";
+import { UserTest } from "./test-utils"; 
 import bcrypt from "bcrypt";
 
 describe('POST /api/users', () => {
@@ -26,12 +26,14 @@ describe('POST /api/users', () => {
 
     it('should register new user', async () => {
         const response = await supertest(buki)
+        
             .post("/api/users")
             .send({
                 username: "test",
                 password: "test",
                 name: "test"
             });
+           // logger.debug("parah nih: " + JSON.stringify(response));
         logger.debug(response.body);
         expect(response.status).toBe(200);
         expect(response.body.data.username).toBe("test");
