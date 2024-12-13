@@ -12,6 +12,7 @@ Request Body :
     "street" : "Jalan Raya",
     "city" : "Jatibening",
     "province" : "London",
+    "country" : "indonesia",
     "postal_code" : "15210"
 }
 ```
@@ -23,6 +24,7 @@ Response Body (Success) :
         "street" : "Jalan Raya",
         "city" : "Jatibening",
         "province" : "London",
+        "country" : "indonesia",
         "postal_code" : "15210"
     }
 }
